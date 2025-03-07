@@ -1,14 +1,20 @@
-from langchain.chat_models import init_chat_model
+# AgentWorkflow/utils/models.py
 from dotenv import load_dotenv, find_dotenv
-from langchain_together import ChatTogether
+import os
+from AgentWorkflow.utils.aws_bedrock_llm import AWSBedrockLLM
 
 load_dotenv(find_dotenv())
 
-llm = ChatTogether(
-    model="meta-llama/Llama-3-70b-chat-hf",
-    temperature=0,
-    max_tokens=None,
-    timeout=None,
-    max_retries=2,
-)
+# Get AWS credentials and endpoint from your environment variables.
+aws_endpoint = os.getenv("BEDROCK_ENDPOINT_NAME")
+aws_region = os.getenv("AWS_REGION", "us-west-2")
+aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.getenv("AWS_ACCESS_SECRET_KEY_ID")
 
+# Instantiate the AWSBedrockLLM and assign it to `llm`
+llm = AWSBedrockLLM(
+    endpoint_name=aws_endpoint,
+    aws_region=aws_region,
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+)
