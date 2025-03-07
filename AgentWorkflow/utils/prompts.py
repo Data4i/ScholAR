@@ -47,6 +47,7 @@ If the question is meant to be a list make sure you give the first {top_k} value
 
 The tools to achieve these plans and steps are available to you make sure you use them and stick to the plan.
 The answer must strictly be in natural language
+Make sure not to fabricate values if the query does not fail but contains nothing tell the user that in the answer
 
 Output Format strictly in JSON Response only with the key "answer" which is the answer to the user input in natural language
 for example 
